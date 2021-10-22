@@ -1,0 +1,58 @@
+.Cursor--blinking {
+  font-size: 3.85rem;
+  font-weight: 500;
+  color: #2d3748 !impotant;
+  opacity: 1;
+  -webkit-animation: blink 0.3s infinite;
+  -moz-animation: blink 0.3s infinite;
+  animation: blink 0.3s infinite;
+  animation-direction: alternate;
+}
+
+@media (max-width: 640px) {
+  .Cursor--blinking {
+    font-size: 2.25rem;
+  }
+}
+
+.hero-title {
+  color: #f04f6a;
+}
+
+/* .light .home-container {
+  background-image: url("/home.png");
+  background-size: cover;
+}
+
+.dark .home-container {
+  background-image: url("/home-dark.png");
+  background-size: cover;
+} */
+
+@keyframes blink {
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes blink {
+  100% {
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes blink {
+  100% {
+    opacity: 0;
+  }
+}
+
+.css-kqg0j9 .post-card {
+  filter: invert(1);
+}
+
+@media (max-width: 640px) {
+  .category-list {
+    -webkit-perspective: 1000;
+  }
+}
