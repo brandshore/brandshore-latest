@@ -26,6 +26,7 @@ export default function HeroSection(props) {
           }}
         />
       </h1>
+      Yes
       {/* <div className="hero-wave">
         <div class="ocean">
           <div class="wave"></div>
