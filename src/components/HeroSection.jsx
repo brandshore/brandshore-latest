@@ -26,13 +26,13 @@ export default function HeroSection(props) {
           }}
         />
       </h1>
-      <div className="hero-wave">
+      {/* <div className="hero-wave">
         <div class="ocean">
           <div class="wave"></div>
           <div class="wave"></div>
           <div class="wave"></div>
         </div>
-      </div>
+      </div> */}
     </section>
   )
 }
