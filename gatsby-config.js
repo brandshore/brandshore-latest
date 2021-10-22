@@ -8,31 +8,31 @@ require("dotenv").config({
 
 const path = require("path")
 
-const domainQuery = `
-  {
-  allAirtable {
-    nodes {
-      data {
-        slug
-        domain
-      }
-      objectID: id
-    }
-  }
-}
-`
+// const domainQuery = `
+//   {
+//   allAirtable {
+//     nodes {
+//       data {
+//         slug
+//         domain
+//       }
+//       objectID: id
+//     }
+//   }
+// }
+// `
 
-const settings = {
-  attributesForFaceting: ["data.domain"],
-}
+// const settings = {
+//   attributesForFaceting: ["data.domain"],
+// }
 
-const queries = [
-  {
-    query: domainQuery,
-    settings,
-    transformer: ({ data }) => data.allAirtable.nodes,
-  },
-]
+// const queries = [
+//   {
+//     query: domainQuery,
+//     settings,
+//     transformer: ({ data }) => data.allAirtable.nodes,
+//   },
+// ]
 
 const { theme } = resolveConfig(tailwindConfig)
 
@@ -77,16 +77,16 @@ module.exports = {
     `gatsby-source-data`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-preact`,
-    {
-      resolve: `gatsby-plugin-algolia`,
-      options: {
-        appId: process.env.GATSBY_ALGOLIA_APP_ID,
-        apiKey: process.env.ALGOLIA_API_KEY,
-        indexName: process.env.ALGOLIA_INDEX_NAME, // for all queries
-        queries,
-        chunkSize: 10000, // default: 1000
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-algolia`,
+    //   options: {
+    //     appId: process.env.GATSBY_ALGOLIA_APP_ID,
+    //     apiKey: process.env.ALGOLIA_API_KEY,
+    //     indexName: process.env.ALGOLIA_INDEX_NAME, // for all queries
+    //     queries,
+    //     chunkSize: 10000, // default: 1000
+    //   },
+    // },
     {
       resolve: `gatsby-source-airtable`,
       options: {
