@@ -10,30 +10,11 @@ const path = require("path")
 
 const domainQuery = `
   {
-  allAirtable(
-      filter: { data: { status: { eq: "publish" } } }
-    ) {
+  allAirtable {
     nodes {
       data {
         slug
-        title
-        industry
-        reverse
-        suffixes
-        style
-        price
-        tld
-        length
-        logo {
-          localFiles {
-            id
-            url
-            childImageSharp {
-              gatsbyImageData(width: 300, placeholder: NONE)
-            }
-          }
-        }
-        noimage
+        domain
       }
       objectID: id
     }
@@ -42,16 +23,7 @@ const domainQuery = `
 `
 
 const settings = {
-  attributeForDistinct: "category",
-  attributesForFaceting: [
-    "data.title",
-    "data.price",
-    "data.industry",
-    "data.style",
-    "data.length",
-    "data.reverse",
-    "data.tld",
-  ],
+  attributesForFaceting: ["data.domain"],
 }
 
 const queries = [
@@ -112,7 +84,7 @@ module.exports = {
         apiKey: process.env.ALGOLIA_API_KEY,
         indexName: process.env.ALGOLIA_INDEX_NAME, // for all queries
         queries,
-        chunkSize: 1000, // default: 1000
+        chunkSize: 10000, // default: 1000
       },
     },
     {

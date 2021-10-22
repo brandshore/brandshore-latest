@@ -12,15 +12,6 @@ sections:
     looptext_2: Start-Up
     looptext_3: Business
     looptext_4: Venture
-  - type: featured_section
-    section_id: featured_section
-    title: Featured domains
-  - type: hot_section
-    section_id: hot_section
-    title: Hot domains
-  - type: featured_section
-    section_id: featured_section
-    title: Featured domains
   # - type: categories_section
   #   section_id: categories_section
   #   title: Categories
