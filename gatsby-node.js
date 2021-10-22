@@ -2,48 +2,85 @@ require("dotenv").config()
 const path = require(`path`)
 const { AIRTABLE_TABLE_NAME: tableName } = process.env
 
-exports.createPages = ({ graphql, actions }) => {
+const blogPostTemplate = require.resolve(`./src/templates/post.js`)
+
+exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
-  return new Promise((resolve, reject) => {
-    graphql(`
-      {
-        allAirtable(filter: { table: { eq: "${tableName}" } }) {
-          nodes {
-            data {
-              slug
-            }
+  const result = await graphql(`
+    query {
+      allAirtable(filter: { table: { eq: "${tableName}" } }) {
+        nodes {
+          data {
+            slug
           }
         }
       }
-    `).then(({ errors, data }) => {
-      if (errors) {
-        reject(errors)
-      }
+    }
+  `)
 
-      const component = path.resolve(`./src/templates/post.js`)
+  if (result.errors) {
+    reporter.panicOnBuild(`There was an error loading posts`, result.errors)
+    return
+  }
 
-      data.allAirtable.nodes.map(({ data: { slug } }) => {
-        createPage({
-          component,
-          context: { slug },
-          path: `/${slug}`,
-        })
-      })
+  const posts = result.data.allAirtable.nodes
 
-      resolve()
+  posts.forEach(post => {
+    createPage({
+      path: post.data.slug,
+      component: blogPostTemplate,
+      context: {
+        slug: post.data.slug,
+      },
+      defer: true,
     })
   })
 }
 
-exports.onCreatePage = ({ page, actions }) => {
-  const { createPage } = actions
+// exports.createPages = ({ graphql, actions }) => {
+//   const { createPage } = actions
 
-  createPage({
-    ...page,
-    context: {
-      ...page.context,
-      tableName,
-    },
-  })
-}
+//   return new Promise((resolve, reject) => {
+//     graphql(`
+//       {
+//         allAirtable(filter: { table: { eq: "${tableName}" } }) {
+//           nodes {
+//             data {
+//               slug
+//             }
+//           }
+//         }
+//       }
+//     `).then(({ errors, data }) => {
+//       if (errors) {
+//         reject(errors)
+//       }
+
+//       const component = path.resolve(`./src/templates/post.js`)
+
+//       data.allAirtable.nodes.map(({ data: { slug } }) => {
+//         createPage({
+//           component,
+//           context: { slug },
+//           path: `/${slug}`,
+//           defer: true,
+//         })
+//       })
+
+//       resolve()
+//     })
+//   })
+// }
+
+// exports.onCreatePage = ({ page, actions }) => {
+//   const { createPage } = actions
+
+//   createPage({
+//     ...page,
+//     context: {
+//       ...page.context,
+//       tableName,
+//     },
+//   })
+// }
