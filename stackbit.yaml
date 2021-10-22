@@ -1,6 +1,6 @@
 stackbitVersion: ~0.3.0
 ssgName: gatsby
-nodeVersion: 12
+nodeVersion: 14
 buildCommand: npm run build
 publishDir: public
 staticDir: static
@@ -371,7 +371,7 @@ models:
     hideContent: true
     layout: category
     folder: category
-    urlPath: 'category/{slug}'
+    urlPath: "category/{slug}"
     fields:
       - type: string
         name: title
@@ -671,7 +671,7 @@ models:
     type: page
     label: Product
     layout: product
-    urlPath: 'products/{slug}'
+    urlPath: "products/{slug}"
     folder: products
     fields:
       - type: string
@@ -723,7 +723,7 @@ models:
         name: url
         label: URL
         required: true
-        default: '#'
+        default: "#"
       - type: string
         name: subtitle
         label: Subtitle
@@ -789,12 +789,12 @@ models:
         name: title
         label: Title
         description: The page title that goes into the <title> tag
-        default: ''
+        default: ""
       - type: string
         name: description
         label: Description
         description: The page description that goes into the <meta name="description"> tag
-        default: ''
+        default: ""
       - type: list
         name: robots
         label: Robots
@@ -822,11 +822,11 @@ models:
           fields:
             - type: string
               name: name
-              default: ''
+              default: ""
               label: Name
             - type: string
               name: value
-              default: ''
+              default: ""
               label: Value
             - type: string
               name: keyName
